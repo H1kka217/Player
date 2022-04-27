@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_player/screens/general/playlist.dart';
 import 'package:music_player/screens/general/player_buttons.dart';
 import 'package:music_player/domain/audio_metadata.dart';
 
@@ -69,7 +70,19 @@ class _PlayerState extends State<Player> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: PlayerButtons(_audioPlayer),
+        child: SafeArea(
+          child: Column(
+            children: [
+              //помогает расширить пространство
+              // для дочернего виджета Row или Column
+              // по главной оси (main axis)
+              Expanded(
+                  child:Playlist(_audioPlayer)
+              ),
+              PlayerButtons(_audioPlayer),
+            ],
+          ),
+        ),
       ),
     );
   }
