@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_player/screens/general/playlist.dart';
 import 'package:music_player/screens/general/player_buttons.dart';
-import 'package:music_player/domain/audio/audio_metadata.dart';
 import '../domain/playlists/playlist_item.dart';
 
 
@@ -36,25 +35,24 @@ class Player extends StatelessWidget {
     );
   }
 
-
   void _loadAudioSources(List<PlaylistItem> playlist) {
     _audioPlayer
         .setAudioSource(
       ConcatenatingAudioSource(
         children: playlist
             .map(
-              (item) => AudioSource.uri(
-            item.itemLocation,
-            tag: AudioMetadata(
-                title: item.title, artwork: item.imgworkUri.toString()),
-          ),
+              (item) =>
+              AudioSource.uri(
+                item.itemLocation,
+                tag: item, // changed
+              ),
         )
             .toList(),
       ),
     )
         .catchError((error) {
+      // catch load errors: 404, invalid url ...
       print("An error occured $error");
     });
   }
 }
-

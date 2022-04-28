@@ -11,6 +11,8 @@ class Playlist extends StatelessWidget {
 
   final AudioPlayer _audioPlayer;
 
+
+
   Widget build(BuildContext context) {
     return StreamBuilder<SequenceState?>( // this was changed
       stream: _audioPlayer.sequenceStateStream,
@@ -18,18 +20,13 @@ class Playlist extends StatelessWidget {
         final state = snapshot.data;
         if (state == null) return CircularProgressIndicator(); // this was added
         final sequence = state.sequence; // this was changed
-        return ListView(
-          children: [
-            for (var i = 0; i < sequence.length; i++)
-              ListTile(
-                selected: i == state.currentIndex,
-                leading: Image.network(sequence[i].tag.artwork),
-                title: Text(sequence[i].tag.title),
-                onTap: () {
-                  _audioPlayer.seek(Duration.zero, index: i);
-                },
-              ),
-          ],
+        ListTile(
+          selected: i == state.currentIndex,
+          leading: Image.network(sequence[i].tag.artworkLocation), // измененный
+          title: Text(sequence[i].tag.title),
+          onTap: () {
+            _audioPlayer.seek(Duration.zero, index: i);
+          },
         );
       },
     );
