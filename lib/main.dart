@@ -1,7 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-
+import 'package:music_player/screens/category_selector.dart';
 import 'package:music_player/services/playlists/hardcoded_playlists_service.dart';
 import 'package:music_player/services/playlists/playlists_service.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
           create: (_) {
             return HardcodedPlaylistsService();
           },
-          child: Player()
+          child: CategorySelector()
       ),
     );
   }
