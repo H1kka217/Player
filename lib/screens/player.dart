@@ -12,7 +12,7 @@ class Player extends StatefulWidget {
 }
 
 class _PlayerState extends State<Player> {
-  AudioPlayer _audioPlayer;
+  late AudioPlayer _audioPlayer;
 
   @override
   void initState() {
