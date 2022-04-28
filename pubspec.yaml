@@ -27,6 +27,8 @@ dependencies:
   # Play music files
   just_audio: ^0.7.1
 
+  provider: ^5.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
